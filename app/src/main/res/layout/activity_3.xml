@@ -7,6 +7,30 @@
     android:background="@drawable/s3"
     tools:context=".Activity3">
 
+
+    <com.journeyapps.barcodescanner.BarcodeView
+        android:id="@+id/zxing_barcode_surface"
+        android:layout_width="835dp"
+        android:layout_height="529dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.538"
+        app:zxing_framing_rect_height="800dp"
+        app:zxing_framing_rect_width="500dp" />
+
+    <com.journeyapps.barcodescanner.ViewfinderView
+        android:id="@+id/zxing_viewfinder_view"
+        android:layout_width="835dp"
+        android:layout_height="529dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:zxing_possible_result_points="@color/zxing_custom_possible_result_points" />
+
     <Button
         android:id="@+id/btn_3"
         android:layout_width="338dp"
@@ -20,4 +44,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.867" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

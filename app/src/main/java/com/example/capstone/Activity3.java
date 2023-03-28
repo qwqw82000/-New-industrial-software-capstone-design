@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 public class Activity3 extends AppCompatActivity {
 
@@ -29,6 +33,27 @@ public class Activity3 extends AppCompatActivity {
         newUiOptions ^= View.SYSTEM_UI_FLAG_FULLSCREEN;
         newUiOptions ^= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         getWindow().getDecorView().setSystemUiVisibility(newUiOptions);
+
+        IntentIntegrator intentIntegrator = new IntentIntegrator(this);
+        intentIntegrator.setBeepEnabled(false);//바코드 인식시 소리
+        intentIntegrator.initiateScan();
+
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+            if(result != null) {
+                if(result.getContents() == null) {
+                    Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent intent = new Intent(this, Activity4.class);
+                    intent.putExtra("barcode_result", result.getContents());
+                    startActivity(intent);
+                }
+            } else {
+                super.onActivityResult(requestCode, resultCode, data);
+            }
+        }
+
 
 
         btn_3 = findViewById(R.id.btn_3);
